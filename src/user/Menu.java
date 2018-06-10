@@ -1,6 +1,6 @@
 package user;
 
-//当用户验证成功跳转到主界面
+// 菜单主页
 
 import SC.AddSC;
 import SC.DeleteSC;
@@ -45,8 +45,6 @@ public class Menu extends JFrame implements ActionListener {
     JMenu query = new JMenu("查询管理");
     JMenuItem selstu = new JMenuItem("查询信息   ");
 
-    JMenuItem sysout = new JMenuItem("系统退出");
-
 
     public Menu() {
         this.setTitle("学生选课管理系统");
@@ -68,7 +66,6 @@ public class Menu extends JFrame implements ActionListener {
         addstu.addActionListener(this);
         updstu.addActionListener(this);
         delstu.addActionListener(this);
-        sysout.addActionListener(this);
         addcou.addActionListener(this);
         delcou.addActionListener(this);
         updcou.addActionListener(this);
@@ -153,45 +150,40 @@ public class Menu extends JFrame implements ActionListener {
         menubar.add(coumng);
         menubar.add(scmng);
         menubar.add(query);
-        menubar.add(sysout);
     }
 
     // 菜单事件响应
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
-        if (obj == sysout) {    // 系统退出
-            System.exit(0);
+        if (obj == addstu) {
+            card.show(pCenter, "增加学生界面");
         } else {
-            if (obj == addstu) {
-                card.show(pCenter, "增加学生界面");
+            if (obj == updstu) {
+                card.show(pCenter, "修改学生界面");
             } else {
-                if (obj == updstu) {
-                    card.show(pCenter, "修改学生界面");
+                if (obj == delstu) {
+                    card.show(pCenter, "删除学生界面");
                 } else {
-                    if (obj == delstu) {
-                        card.show(pCenter, "删除学生界面");
+                    if (obj == addcou) {
+                        card.show(pCenter, "增加课程界面");
                     } else {
-                        if (obj == addcou) {
-                            card.show(pCenter, "增加课程界面");
+                        if (obj == delcou) {
+                            card.show(pCenter, "删除课程界面");
                         } else {
-                            if (obj == delcou) {
-                                card.show(pCenter, "删除课程界面");
+                            if (obj == updcou) {
+                                card.show(pCenter, "修改课程界面");
                             } else {
-                                if (obj == updcou) {
-                                    card.show(pCenter, "修改课程界面");
+                                if (obj == addsc) {
+                                    card.show(pCenter, "增加选课界面");
                                 } else {
-                                    if (obj == addsc) {
-                                        card.show(pCenter, "增加选课界面");
+                                    if (obj == delsc) {
+                                        card.show(pCenter, "删除选课界面");
                                     } else {
-                                        if (obj == delsc) {
-                                            card.show(pCenter, "删除选课界面");
+                                        if (obj == updsc) {
+                                            card.show(pCenter, "修改选课界面");
                                         } else {
-                                            if (obj == updsc) {
-                                                card.show(pCenter, "修改选课界面");
-                                            } else {
-                                                if (obj == selstu) {
-                                                    card.show(pCenter, "学生查询界面");
-                                                }
+                                            if (obj == selstu) {
+                                                card.show(pCenter, "学生查询界面");
                                             }
                                         }
                                     }
