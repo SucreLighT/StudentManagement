@@ -1,5 +1,7 @@
 package user;
 
+
+// 建立数据库连接
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,7 +26,6 @@ public class ConnectSql {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         System.out.println(conn);
 
         return conn;

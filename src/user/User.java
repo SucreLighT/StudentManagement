@@ -1,13 +1,13 @@
 package user;
 
+// 用户登录
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-
-//用户登录
 
 public class User extends JFrame {
     private JLabel username, password;
@@ -70,7 +70,7 @@ public class User extends JFrame {
 
                 try {
                     Connection dbConn = ConnectSql.CONN();
-                    stmt = (Statement) dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_READ_ONLY); // 设置结果集游标可上下移动，对数据库表只读
                     rs = stmt.executeQuery(sql);         // 返回结果集
 
