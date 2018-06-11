@@ -15,6 +15,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
     JTextField findSno, Sno, Sname, Sdept, Sage, Ssex;
     JButton findButton, updateButton;
 
+    // 实现修改学生记录界面
     public UpdateStudent() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -86,35 +87,39 @@ public class UpdateStudent extends JPanel implements ActionListener {
         validate();
     }
 
+    // 实现修改学生记录事件响应
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         Statement stmt = null;
-        ResultSet rs = null, rs1 = null;
-        String sql = null, sql1 = null, sqlSC;
+        ResultSet rs = null;
+        String sql1 = null, sql2 = null;
 
+
+        // 执行SQL语句并返回结果集
         if (obj == findButton) {
             if (findButton.getText().equals(""))
                 JOptionPane.showMessageDialog(this, "请填写查询的学号！");
             else {
-
-                sql1 = "select * from S where Sno='" + findSno.getText() + "'";
+                // 查找是否存在该学生记录
+                sql1 = "select * from student where Sno='" + findSno.getText() + "'";
                 try {
                     Connection dbConn1 = ConnectSql.CONN();
-                    stmt = (Statement) dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    stmt = dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_READ_ONLY);
-                    rs1 = stmt.executeQuery(sql1);
-                    if (rs1.next()) {
-                        Sno.setText(rs1.getString("Sno").trim());
-                        Sname.setText(rs1.getString("Sname").trim());
-                        Sage.setText(rs1.getString("Sa").trim());
-                        Ssex.setText(rs1.getString("Sg").trim());
-                        Sdept.setText(rs1.getString("Sx").trim());
-                        save = findSno.getText();
+                    rs = stmt.executeQuery(sql1);
+                    // 存在该学生记录并显示
+                    if (rs.next()) {
+                        Sno.setText(rs.getString("Sno").trim());
+                        Sname.setText(rs.getString("Sname").trim());
+                        Ssex.setText(rs.getString("Ssex").trim());
+                        Sage.setText(rs.getString("Sage").trim());
+                        Sdept.setText(rs.getString("Sdept").trim());
+                        save = findSno.getText().trim();
                     } else {
-                        JOptionPane.showMessageDialog(this, "没有这个学号的学生");
+                        JOptionPane.showMessageDialog(this, "无该学号的学生记录！");
                     }
                     stmt.close();
-                    rs1.close();
+                    rs.close();
                 } catch (SQLException e1) {
                     System.out.print("SQL Exception occur.Message is:" + e1.getMessage());
                 }
@@ -122,60 +127,32 @@ public class UpdateStudent extends JPanel implements ActionListener {
         } else {
             if (obj == updateButton) {
                 if (save == null) {
-                    JOptionPane.showMessageDialog(this, "还没查找需要修改的学生");
+                    JOptionPane.showMessageDialog(this, "未查找到待修改的学生记录！");
                 } else {
-                    if (Sno.getText().equals("") || Sname.getText().equals("") || Sage.getText().equals("")
-                            || Ssex.getText().equals("") || Sdept.getText().equals("")) {
-                        JOptionPane.showMessageDialog(this, "学生信息填满才能修改！");
+                    if (Sno.getText().equals("") || Sname.getText().equals("") || Ssex.getText().equals("") || Sage.getText().equals("")
+                            || Sdept.getText().equals("")) {    // 保证student表中每个字段都是非空
+                        JOptionPane.showMessageDialog(this, "请完善信息后再修改！");
                     } else {
-                        sql = "update S set Sno='" + Sno.getText() + "',Sname='" + Sname.getText() + "',Sa='" + Sage.getText()
-                                + "',Sg='" + Ssex.getText() + "',Sx='" + Sdept.getText() + "'" + "where Sno='" + save + "'";
-                        if (save.trim().equals(Sno.getText().trim())) {
-                            try {
-                                Connection dbConn1 = ConnectSql.CONN();
-                                stmt = (Statement) dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                        ResultSet.CONCUR_READ_ONLY);
-                                stmt.executeUpdate(sql);
-                                save = null;
-                                JOptionPane.showMessageDialog(this, "修改完成");
-                                Sno.setText("");
-                                Sname.setText("");
-                                Sage.setText("");
-                                Ssex.setText("");
-                                Sdept.setText("");
-                                stmt.close();
-                            } catch (SQLException e1) {
-                                System.out.print("SQL Exception occur.Message is:" + e1.getMessage());
-                            }
-                        } else {
-                            sql1 = "select * from S where Sno='" + Sno.getText() + "'";
-                            try {
-                                Connection dbConn1 = ConnectSql.CONN();
-                                stmt = (Statement) dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                        ResultSet.CONCUR_READ_ONLY);
-                                rs1 = stmt.executeQuery(sql1);
-                                if (rs1.next()) {
-                                    JOptionPane.showMessageDialog(this, "已存在此学号学生");
-                                } else {
-                                    sqlSC = "update SC set Sno='" + Sno.getText() + "' where Sno='" + save + "'";
-                                    stmt.executeUpdate(sql);
-                                    stmt.executeUpdate(sqlSC);
-                                    save = null;
-                                    JOptionPane.showMessageDialog(null, "修改完成");
-                                    Sno.setText("");
-                                    Sname.setText("");
-                                    Sage.setText("");
-                                    Ssex.setText("");
-                                    Sdept.setText("");
-                                }
-                                stmt.close();
-                                rs1.close();
-                            } catch (SQLException e1) {
-                                System.out.print("SQL Exception occur.Message is:" + e1.getMessage());
-                            }
+                        // 修改该学生记录
+                        sql2 = "update student set Sno='" + Sno.getText() + "',Sname='" + Sname.getText() + "',Ssex='" + Ssex.getText()
+                                + "',Sage='" + Sage.getText() + "',Sdept='" + Sdept.getText() + "'" + "where Sno='" + save + "'";
+                        try {
+                            Connection dbConn1 = ConnectSql.CONN();
+                            stmt = dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                    ResultSet.CONCUR_READ_ONLY);
+                            stmt.executeUpdate(sql2);
+                            save = null;
+                            JOptionPane.showMessageDialog(this, "修改完成");
+                            Sno.setText("");
+                            Sname.setText("");
+                            Sage.setText("");
+                            Ssex.setText("");
+                            Sdept.setText("");
 
+                            stmt.close();
+                        } catch (SQLException e1) {
+                            System.out.print("SQL Exception:" + e1.getMessage());
                         }
-
                     }
                 }
             }

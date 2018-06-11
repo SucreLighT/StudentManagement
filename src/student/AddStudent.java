@@ -76,17 +76,17 @@ public class AddStudent extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent c) {
         Object obj = c.getSource();
         if (obj == addButton) {
-            if (Sno.getText().equals("") || Sname.getText().equals("") || Sdept.getText().equals("") || Sage.getText().equals("")
-                    || Ssex.getText().equals("")) { // 保证student表中每个字段都是非空
+            if (Sno.getText().equals("") || Sname.getText().equals("") || Ssex.getText().equals("") || Sage.getText().equals("")
+                    || Sdept.getText().equals("")) { // 保证student表中每个字段都是非空
                 JOptionPane.showMessageDialog(this, "请完善信息后再添加！");
             }
             // 执行SQL语句并返回结果集
             Statement stmt = null;
             ResultSet rs = null;
             String sql1, sql2;
-            sql1 = "insert into S values('" + Sno.getText() + "','" + Sname.getText() + "','" + Sdept.getText() + "','"
-                    + Sage.getText() + "','" + Ssex.getText() + "')";
-            sql2 = "select * from S where Sno='" + Sno.getText() + "'";
+            sql1 = "insert into student values('" + Sno.getText() + "','" + Sname.getText() + "','" + Ssex.getText() + "','"
+                    + Sage.getText() + "','" + Sdept.getText() + "')";
+            sql2 = "select * from student where Sno='" + Sno.getText() + "'";
             try {
                 Connection dbConn = ConnectSql.CONN();
                 stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
