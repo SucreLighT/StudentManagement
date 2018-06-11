@@ -54,7 +54,6 @@ public class AddStudent extends JPanel implements ActionListener {
         box6.add(addButton);
 
         Box boxH = Box.createVerticalBox();
-        boxH.add(box0);
         boxH.add(box1);
         boxH.add(box2);
         boxH.add(box3);
@@ -62,11 +61,14 @@ public class AddStudent extends JPanel implements ActionListener {
         boxH.add(box5);
         boxH.add(box6);
         boxH.add(Box.createVerticalGlue());
-        JPanel messPanel = new JPanel();
-        messPanel.add(boxH);
-        validate();
+        JPanel messPanel1 = new JPanel();
+        JPanel messPanel2 = new JPanel();
+        messPanel1.add(box0);
+        messPanel2.add(boxH);
         setLayout(new BorderLayout());
-        add(messPanel, BorderLayout.CENTER);
+        JSplitPane splitV = new JSplitPane(JSplitPane.VERTICAL_SPLIT, messPanel1, messPanel2);// 分割
+        splitV.setEnabled(false);
+        add(splitV, BorderLayout.CENTER);
         validate();
     }
 

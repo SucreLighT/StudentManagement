@@ -26,12 +26,13 @@ public class DeleteStudent extends JPanel implements ActionListener {
         findSno = new JTextField(12);
         Sno = new JTextField(12);
         Sname = new JTextField(12);
-        Ssex= new JTextField(12);
         Sage = new JTextField(12);
+        Ssex = new JTextField(12);
         Sdept = new JTextField(12);
         findButton = new JButton("查找");
         delButton = new JButton("删除");
 
+        Box boxTitle = Box.createHorizontalBox();
         Box box0 = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
         Box box2 = Box.createHorizontalBox();
@@ -40,48 +41,45 @@ public class DeleteStudent extends JPanel implements ActionListener {
         Box box5 = Box.createHorizontalBox();
         Box box6 = Box.createHorizontalBox();
         Box box7 = Box.createHorizontalBox();
-        Box box8 = Box.createHorizontalBox();
-
 
         JLabel title = new JLabel("删除学生信息");
         title.setFont(new Font("宋体", Font.BOLD, 12));
-        box0.add(title);
+        boxTitle.add(title);
+        box0.add(new JLabel("学号:", JLabel.CENTER));
+        box0.add(findSno);
+        box0.add(findButton);
         box1.add(new JLabel("学号:", JLabel.CENTER));
-        box1.add(findSno);
-        box2.add(findButton);
-        box3.add(new JLabel("学号:"));
-        box3.add(Sno);
-        box4.add(new JLabel("姓名:"));
-        box4.add(Sname);
-        box5.add(new JLabel("性别:"));
-        box5.add(Ssex);
-        box6.add(new JLabel("年龄:"));
-        box6.add(Sage);
-        box7.add(new JLabel("系别:"));
-        box7.add(Sdept);
-        box8.add(delButton);
-
-        Box boxH1 = Box.createVerticalBox();
-        boxH1.add(box0);
-        boxH1.add(box1);
-        boxH1.add(box2);
-        Box boxH2 = Box.createVerticalBox();
-        boxH2.add(box3);
-        boxH2.add(box4);
-        boxH2.add(box5);
-        boxH2.add(box6);
-        boxH2.add(box7);
-        boxH2.add(box8);
-        boxH2.add(Box.createVerticalGlue());
+        box1.add(Sno);
+        box2.add(new JLabel("姓名:", JLabel.CENTER));
+        box2.add(Sname);
+        box3.add(new JLabel("性别:", JLabel.CENTER));
+        box3.add(Ssex);
+        box4.add(delButton);
+        box5.add(new JLabel("年龄:", JLabel.CENTER));
+        box5.add(Sage);
+        box6.add(new JLabel("系别:", JLabel.CENTER));
+        box6.add(Sdept);
+        box7.add(delButton);
 
         delButton.addActionListener(this);
         findButton.addActionListener(this);
 
-        JPanel messPanel2 = new JPanel();
-        JPanel messPanel1 = new JPanel();
-        messPanel1.add(boxH1);
+        Box boxH = Box.createVerticalBox();
+        boxH.add(box0);
+        boxH.add(box1);
+        boxH.add(box2);
+        boxH.add(box3);
+        boxH.add(box4);
+        boxH.add(box5);
+        boxH.add(box6);
+        boxH.add(box7);
 
-        messPanel2.add(boxH2);
+        boxH.add(Box.createVerticalGlue());
+
+        JPanel messPanel1 = new JPanel();
+        JPanel messPanel2 = new JPanel();
+        messPanel1.add(boxTitle);
+        messPanel2.add(boxH);
         setLayout(new BorderLayout());
         JSplitPane splitV = new JSplitPane(JSplitPane.VERTICAL_SPLIT, messPanel1, messPanel2);// 分割
         splitV.setEnabled(false);
