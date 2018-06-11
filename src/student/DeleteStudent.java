@@ -15,7 +15,7 @@ public class DeleteStudent extends JPanel implements ActionListener {
     JTextField findSno, Sno, Sname, Ssex, Sage, Sdept;
     JButton findButton, delButton;
 
-    // 实现删除学生界面设计
+    // 实现删除学生界面
     public DeleteStudent() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -87,7 +87,7 @@ public class DeleteStudent extends JPanel implements ActionListener {
         validate();
     }
 
-    // 实现删除学生事件响应
+    // 实现删除学生记录事件响应
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         Statement stmt = null;
