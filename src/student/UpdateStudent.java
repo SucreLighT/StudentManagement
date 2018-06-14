@@ -117,6 +117,11 @@ public class UpdateStudent extends JPanel implements ActionListener {
                         Sdept.setText(rs.getString("Sdept").trim());
                         save = findSno.getText().trim();
                     } else {
+                        Sno.setText("");
+                        Sname.setText("");
+                        Ssex.setText("");
+                        Sage.setText("");
+                        Sdept.setText("");
                         JOptionPane.showMessageDialog(this, "无该学号的学生记录！");
                     }
                     stmt.close();
