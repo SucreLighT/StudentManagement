@@ -149,12 +149,12 @@ public class UpdateStudent extends JPanel implements ActionListener {
                                     ResultSet.CONCUR_READ_ONLY);
                             stmt.executeUpdate(sql2);
                             save = null;
-                            JOptionPane.showMessageDialog(this, "修改完成");
                             Sno.setText("");
                             Sname.setText("");
                             Sage.setText("");
                             Ssex.setText("");
                             Sdept.setText("");
+                            JOptionPane.showMessageDialog(this, "修改完成!");
 
                             stmt.close();
                         } catch (SQLException e1) {

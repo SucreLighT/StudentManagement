@@ -144,16 +144,16 @@ public class DeleteStudent extends JPanel implements ActionListener {
                         stmt.executeUpdate(sql2);
                         stmt.executeUpdate(sql3);
                         save = null;
-                        JOptionPane.showMessageDialog(this, "删除完成！");
                         Sno.setText("");
                         Sname.setText("");
                         Ssex.setText("");
                         Sage.setText("");
                         Sdept.setText("");
+                        JOptionPane.showMessageDialog(this, "删除完成！");
 
                         stmt.close();
                     } catch (SQLException e1) {
-                        System.out.print("SQL Exception occur.Message is:" + e1.getMessage());
+                        System.out.print("SQL Exception:" + e1.getMessage());
                     }
                 }
             }

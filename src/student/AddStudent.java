@@ -98,7 +98,7 @@ public class AddStudent extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(this, "该学号已存在，无法添加!");
                 } else {
                     stmt.executeUpdate(sql1);   // 添加记录
-                    JOptionPane.showMessageDialog(this, "添加成功");
+                    JOptionPane.showMessageDialog(this, "添加完成!");
                 }
                 rs.close();
                 stmt.close();
