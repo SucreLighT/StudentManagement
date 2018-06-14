@@ -99,7 +99,7 @@ public class DeleteStudent extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "请输入待删除的学生学号！");
             else {
                 sql1 = "select * from student where Sno='" + findSno.getText() + "'";
-                System.out.print(sql1);
+                System.out.print(sql1 + "\n");
                 try {
                     Connection dbConn = ConnectSql.CONN();
                     stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -135,8 +135,8 @@ public class DeleteStudent extends JPanel implements ActionListener {
                     // 删除该学生记录，由于外键约束先删除sc表中该学生记录
                     sql2 = "delete from sc where Sno='" + save + "'";
                     sql3 = "delete from student where Sno='" + save + "'";
-                    System.out.print(sql2);
-                    System.out.print(sql3);
+                    System.out.print(sql2 + "\n");
+                    System.out.print(sql3 + "\n");
                     try {
                         Connection dbConn = ConnectSql.CONN();
                         stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,

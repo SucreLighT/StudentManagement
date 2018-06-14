@@ -102,7 +102,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
             else {
                 // 查找是否存在该学生记录
                 sql1 = "select * from student where Sno='" + findSno.getText() + "'";
-                System.out.print(sql1);
+                System.out.print(sql1 + "\n");
                 try {
                     Connection dbConn1 = ConnectSql.CONN();
                     stmt = dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -142,7 +142,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
                         // 修改该学生记录
                         sql2 = "update student set Sno='" + Sno.getText() + "',Sname='" + Sname.getText() + "',Ssex='" + Ssex.getText()
                                 + "',Sage='" + Sage.getText() + "',Sdept='" + Sdept.getText() + "'" + "where Sno='" + save + "'";
-                        System.out.print(sql2);
+                        System.out.print(sql2 + "\n");
                         try {
                             Connection dbConn1 = ConnectSql.CONN();
                             stmt = dbConn1.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,

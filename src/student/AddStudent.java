@@ -87,8 +87,8 @@ public class AddStudent extends JPanel implements ActionListener {
             sql1 = "insert into student values('" + Sno.getText() + "','" + Sname.getText() + "','" + Ssex.getText() + "','"
                     + Sage.getText() + "','" + Sdept.getText() + "')";
             sql2 = "select * from student where Sno='" + Sno.getText() + "'";
-            System.out.print(sql1);
-            System.out.print(sql2);
+            System.out.print(sql1 + "\n");
+            System.out.print(sql2 + "\n");
             try {
                 Connection dbConn = ConnectSql.CONN();
                 stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -98,6 +98,11 @@ public class AddStudent extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(this, "该学号已存在，无法添加!");
                 } else {
                     stmt.executeUpdate(sql1);   // 添加记录
+                    Sno.setText("");
+                    Sname.setText("");
+                    Ssex.setText("");
+                    Sage.setText("");
+                    Sdept.setText("");
                     JOptionPane.showMessageDialog(this, "添加完成!");
                 }
                 rs.close();
