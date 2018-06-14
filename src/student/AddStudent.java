@@ -87,6 +87,8 @@ public class AddStudent extends JPanel implements ActionListener {
             sql1 = "insert into student values('" + Sno.getText() + "','" + Sname.getText() + "','" + Ssex.getText() + "','"
                     + Sage.getText() + "','" + Sdept.getText() + "')";
             sql2 = "select * from student where Sno='" + Sno.getText() + "'";
+            System.out.print(sql1);
+            System.out.print(sql2);
             try {
                 Connection dbConn = ConnectSql.CONN();
                 stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
