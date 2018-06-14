@@ -67,7 +67,7 @@ public class User extends JFrame {
                 // 数据库sql查询并返回结果集
                 String sql;
                 sql = "select * from admin where username='" + usernametext.getText() + "'";
-
+                System.out.print(sql+"\n");
                 try {
                     Connection dbConn = ConnectSql.CONN();
                     stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,

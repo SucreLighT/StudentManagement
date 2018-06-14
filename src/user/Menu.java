@@ -38,9 +38,9 @@ public class Menu extends JFrame implements ActionListener {
     JMenuItem delcou = new JMenuItem("删除课程   ");
 
     JMenu scmng = new JMenu("选课管理");
-    JMenuItem addsc = new JMenuItem("录入成绩   ");
-    JMenuItem updsc = new JMenuItem("修改成绩   ");
-    JMenuItem delsc = new JMenuItem("删除成绩   ");
+    JMenuItem addsc = new JMenuItem("增加选课   ");
+    JMenuItem updsc = new JMenuItem("修改选课   ");
+    JMenuItem delsc = new JMenuItem("删除选课   ");
 
     JMenu query = new JMenu("查询管理");
     JMenuItem selstu = new JMenuItem("查询信息   ");

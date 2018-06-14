@@ -40,7 +40,6 @@ public class UpdateStudent extends JPanel implements ActionListener {
         Box box4 = Box.createHorizontalBox();
         Box box5 = Box.createHorizontalBox();
         Box box6 = Box.createHorizontalBox();
-        Box box7 = Box.createHorizontalBox();
 
         JLabel title = new JLabel("修改学生信息");
         title.setFont(new Font("宋体", Font.BOLD, 12));
@@ -54,12 +53,11 @@ public class UpdateStudent extends JPanel implements ActionListener {
         box2.add(Sname);
         box3.add(new JLabel("性别:", JLabel.CENTER));
         box3.add(Ssex);
-        box4.add(updateButton);
-        box5.add(new JLabel("年龄:", JLabel.CENTER));
-        box5.add(Sage);
-        box6.add(new JLabel("系别:", JLabel.CENTER));
-        box6.add(Sdept);
-        box7.add(updateButton);
+        box4.add(new JLabel("年龄:", JLabel.CENTER));
+        box4.add(Sage);
+        box5.add(new JLabel("系别:", JLabel.CENTER));
+        box5.add(Sdept);
+        box6.add(updateButton);
 
         updateButton.addActionListener(this);
         findButton.addActionListener(this);
@@ -72,7 +70,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
         boxH.add(box4);
         boxH.add(box5);
         boxH.add(box6);
-        boxH.add(box7);
+
 
         boxH.add(Box.createVerticalGlue());
 
@@ -93,7 +91,6 @@ public class UpdateStudent extends JPanel implements ActionListener {
         Statement stmt = null;
         ResultSet rs = null;
         String sql1 = null, sql2 = null;
-
 
         // 执行SQL语句并返回结果集
         if (obj == findButton) {
@@ -128,7 +125,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
                     stmt.close();
                     rs.close();
                 } catch (SQLException e1) {
-                    System.out.print("SQL Exception occur.Message is:" + e1.getMessage());
+                    System.out.print("SQL Exception:" + e1.getMessage());
                 }
             }
         } else {
@@ -156,7 +153,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
                             Sage.setText("");
                             Ssex.setText("");
                             Sdept.setText("");
-                            JOptionPane.showMessageDialog(this, "修改完成!");
+                            JOptionPane.showMessageDialog(this, "修改完成！");
 
                             stmt.close();
                         } catch (SQLException e1) {
