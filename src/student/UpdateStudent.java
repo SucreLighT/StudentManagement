@@ -117,6 +117,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
                         Sdept.setText(rs.getString("Sdept").trim());
                         save = findSno.getText().trim();
                     } else {
+                        findSno.setText("");
                         Sno.setText("");
                         Sname.setText("");
                         Ssex.setText("");
@@ -149,6 +150,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
                                     ResultSet.CONCUR_READ_ONLY);
                             stmt.executeUpdate(sql2);
                             save = null;
+                            findSno.setText("");
                             Sno.setText("");
                             Sname.setText("");
                             Sage.setText("");

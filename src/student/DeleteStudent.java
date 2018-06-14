@@ -92,7 +92,6 @@ public class DeleteStudent extends JPanel implements ActionListener {
         ResultSet rs = null;
         String sql1 = null, sql2 = null, sql3 = null;
 
-
         // 执行SQL语句并返回结果集
         if (obj == findButton) {
             if (findSno.getText().equals(""))
@@ -114,6 +113,7 @@ public class DeleteStudent extends JPanel implements ActionListener {
                         Sdept.setText(rs.getString("Sdept").trim());
                         save = findSno.getText().trim();
                     } else {
+                        findSno.setText("");
                         Sno.setText("");
                         Sname.setText("");
                         Ssex.setText("");
@@ -144,6 +144,7 @@ public class DeleteStudent extends JPanel implements ActionListener {
                         stmt.executeUpdate(sql2);
                         stmt.executeUpdate(sql3);
                         save = null;
+                        findSno.setText("");
                         Sno.setText("");
                         Sname.setText("");
                         Ssex.setText("");

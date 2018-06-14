@@ -23,7 +23,7 @@ public class User extends JFrame {
 
         username = new JLabel("用户名:");
         username.setFont(new Font("Serif", Font.PLAIN, 20));
-        password = new JLabel("密   码:");
+        password = new JLabel("密    码:");
         password.setFont(new Font("Serif", Font.PLAIN, 20));
         usernametext = new JTextField(12);
         passwordtext = new JPasswordField(12);
