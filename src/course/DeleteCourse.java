@@ -30,6 +30,10 @@ public class DeleteCourse extends JPanel implements ActionListener {
         Ccredit = new JTextField(12);
         findButton = new JButton("查找");
         delButton = new JButton("删除");
+        Cno.setEditable(false);
+        Cname.setEditable(false);
+        Cpno.setEditable(false);
+        Ccredit.setEditable(false);
 
         Box boxTitle = Box.createHorizontalBox();
         Box box0 = Box.createHorizontalBox();

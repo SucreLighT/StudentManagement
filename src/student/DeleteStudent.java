@@ -31,6 +31,11 @@ public class DeleteStudent extends JPanel implements ActionListener {
         Sdept = new JTextField(12);
         findButton = new JButton("查找");
         delButton = new JButton("删除");
+        Sno.setEditable(false);
+        Sname.setEditable(false);
+        Sage.setEditable(false);
+        Ssex.setEditable(false);
+        Sdept.setEditable(false);
 
         Box boxTitle = Box.createHorizontalBox();
         Box box0 = Box.createHorizontalBox();

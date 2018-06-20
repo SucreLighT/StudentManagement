@@ -30,6 +30,9 @@ public class DeleteSC extends JPanel implements ActionListener {
         Grade = new JTextField(12);
         findButton = new JButton("查找");
         delButton = new JButton("删除");
+        Cno.setEditable(false);
+        Sno.setEditable(false);
+        Grade.setEditable(false);
 
         Box boxTitle = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
@@ -84,7 +87,7 @@ public class DeleteSC extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         Statement stmt = null;
-        ResultSet rs = null, rs1 = null;
+        ResultSet rs1 = null;
         String sql1 = null, sql2 = null;
 
         if (obj == findButton) {
@@ -128,12 +131,12 @@ public class DeleteSC extends JPanel implements ActionListener {
                         stmt.executeUpdate(sql2);
                         saveS = null;
                         saveC = null;
-                        JOptionPane.showMessageDialog(this, "删除完成！");
                         findSno.setText("");
                         findCno.setText("");
                         Cno.setText("");
                         Sno.setText("");
                         Grade.setText("");
+                        JOptionPane.showMessageDialog(this, "删除完成！");
                         stmt.close();
                     } catch (SQLException e1) {
                         System.out.print("SQL Exception:" + e1.getMessage());

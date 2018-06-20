@@ -143,6 +143,8 @@ public class UpdateSC extends JPanel implements ActionListener {
                                 stmt.executeUpdate(sql2);
                                 saveC = null;
                                 saveS = null;
+                                findSno.setText("");
+                                findCno.setText("");
                                 Sno.setText("");
                                 Cno.setText("");
                                 Grade.setText("");
