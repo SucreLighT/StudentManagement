@@ -16,6 +16,7 @@ public class ShowCourse extends JFrame {
     ResultSet rs = null;
 
     public ShowCourse(String sql1) {
+        super("查询结果");
         columnNames = new Vector();
         // 设置列名
         columnNames.add("课程号");
