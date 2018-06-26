@@ -103,7 +103,6 @@ public class Menu extends JFrame implements ActionListener {
         AddSC addSC = new AddSC();
         DeleteSC deleteSC = new DeleteSC();
         UpdateSC updateSC = new UpdateSC();
-        //SelectStudent selectStudent = new SelectStudent();
         QueryStudent queryStudent = new QueryStudent();
         QueryCourse queryCourse = new QueryCourse();
         QuerySC querySC = new QuerySC();
@@ -196,12 +195,12 @@ public class Menu extends JFrame implements ActionListener {
                                         } else {
                                             if (obj == questu) {
                                                 card.show(pCenter, "学生查询界面");
-                                            }else {
-                                                if(obj == quecou){
-                                                    card.show(pCenter,"课程查询界面");
-                                                }else{
-                                                    if(obj == quesc){
-                                                        card.show(pCenter,"选课查询界面");
+                                            } else {
+                                                if (obj == quecou) {
+                                                    card.show(pCenter, "课程查询界面");
+                                                } else {
+                                                    if (obj == quesc) {
+                                                        card.show(pCenter, "选课查询界面");
                                                     }
                                                 }
                                             }

@@ -55,6 +55,7 @@ public class ShowSCByStu extends JFrame {
                 this.add(jsp);
                 this.setSize(500, 400);
                 this.setVisible(true);
+                this.setLocationRelativeTo(null);
             }
         } catch (SQLException e1) {
             System.out.print("SQL Exception:" + e1.getMessage());
