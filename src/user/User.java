@@ -46,7 +46,7 @@ public class User extends JFrame {
 
         setBounds(600, 300, 250, 150);  // 设置窗体大小
         setVisible(true);
-        setResizable(false);                               // 设置窗体不可拉伸
+        setResizable(true);                               // 设置窗体不可拉伸
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // 设置窗体关闭操作
     }
 

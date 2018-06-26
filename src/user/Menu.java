@@ -4,14 +4,16 @@ package user;
 
 import SC.AddSC;
 import SC.DeleteSC;
+import SC.QuerySC;
 import SC.UpdateSC;
 import course.AddCourse;
 import course.DeleteCourse;
+import course.QueryCourse;
 import course.UpdateCourse;
 import student.AddStudent;
 import student.DeleteStudent;
-import student.SelectStudent;
 import student.UpdateStudent;
+import student.QueryStudent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +45,9 @@ public class Menu extends JFrame implements ActionListener {
     JMenuItem delsc = new JMenuItem("删除选课   ");
 
     JMenu query = new JMenu("查询管理");
-    JMenuItem selstu = new JMenuItem("查询信息   ");
+    JMenuItem questu = new JMenuItem("学生信息查询   ");
+    JMenuItem quecou = new JMenuItem("课程信息查询   ");
+    JMenuItem quesc = new JMenuItem("选课信息查询   ");
 
 
     public Menu() {
@@ -72,8 +76,11 @@ public class Menu extends JFrame implements ActionListener {
         addsc.addActionListener(this);
         delsc.addActionListener(this);
         updsc.addActionListener(this);
-        selstu.addActionListener(this);
-
+        questu.addActionListener(this);
+        quecou.addActionListener(this);
+        quesc.addActionListener(this);
+        quecou.addActionListener(this);
+        quesc.addActionListener(this);
         // 创建标签
         label = new JLabel("选课管理系统", JLabel.CENTER);
         label.setFont(new Font("宋体", Font.BOLD, 36));
@@ -96,9 +103,10 @@ public class Menu extends JFrame implements ActionListener {
         AddSC addSC = new AddSC();
         DeleteSC deleteSC = new DeleteSC();
         UpdateSC updateSC = new UpdateSC();
-        SelectStudent selectStudent = new SelectStudent();
-
-
+        //SelectStudent selectStudent = new SelectStudent();
+        QueryStudent queryStudent = new QueryStudent();
+        QueryCourse queryCourse = new QueryCourse();
+        QuerySC querySC = new QuerySC();
         // 设置主界面和子界面
         pCenter.add("欢迎界面", label);
         pCenter.add("增加学生界面", addStudent);
@@ -110,7 +118,9 @@ public class Menu extends JFrame implements ActionListener {
         pCenter.add("增加选课界面", addSC);
         pCenter.add("删除选课界面", deleteSC);
         pCenter.add("修改选课界面", updateSC);
-        pCenter.add("学生查询界面", selectStudent);
+        pCenter.add("学生查询界面", queryStudent);
+        pCenter.add("课程查询界面", queryCourse);
+        pCenter.add("选课查询界面", querySC);
 
         add(pCenter, BorderLayout.CENTER);
         validate();
@@ -141,7 +151,9 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     private void addMenu4() {
-        query.add(selstu);
+        query.add(questu);
+        query.add(quecou);
+        query.add(quesc);
     }
 
     // 将每个子菜单添加到菜单栏
@@ -182,8 +194,16 @@ public class Menu extends JFrame implements ActionListener {
                                         if (obj == updsc) {
                                             card.show(pCenter, "修改选课界面");
                                         } else {
-                                            if (obj == selstu) {
+                                            if (obj == questu) {
                                                 card.show(pCenter, "学生查询界面");
+                                            }else {
+                                                if(obj == quecou){
+                                                    card.show(pCenter,"课程查询界面");
+                                                }else{
+                                                    if(obj == quesc){
+                                                        card.show(pCenter,"选课查询界面");
+                                                    }
+                                                }
                                             }
                                         }
                                     }
