@@ -13,7 +13,7 @@ import java.sql.*;
 public class DeleteStudent extends JPanel implements ActionListener {
     String save = null;
     JTextField findSno, Sno, Sname, Ssex, Sage, Sdept;
-    JButton findButton, delButton;
+    JButton findButton, delButton, cancelButton;
 
     // 实现删除学生界面
     public DeleteStudent() {
@@ -31,6 +31,7 @@ public class DeleteStudent extends JPanel implements ActionListener {
         Sdept = new JTextField(12);
         findButton = new JButton("查找");
         delButton = new JButton("删除");
+        cancelButton = new JButton("取消");
         Sno.setEditable(false);
         Sname.setEditable(false);
         Sage.setEditable(false);
@@ -64,9 +65,11 @@ public class DeleteStudent extends JPanel implements ActionListener {
         box5.add(new JLabel("系别:", JLabel.CENTER));
         box5.add(Sdept);
         box6.add(delButton);
+        box6.add(cancelButton);
 
         delButton.addActionListener(this);
         findButton.addActionListener(this);
+        cancelButton.addActionListener(this);
 
         Box boxH = Box.createVerticalBox();
         boxH.add(box0);
@@ -161,6 +164,17 @@ public class DeleteStudent extends JPanel implements ActionListener {
                     } catch (SQLException e1) {
                         System.out.print("SQL Exception:" + e1.getMessage());
                     }
+                }
+            }else
+            {
+                if(obj == cancelButton)
+                {
+                    findSno.setText("");
+                    Sno.setText("");
+                    Sname.setText("");
+                    Ssex.setText("");
+                    Sage.setText("");
+                    Sdept.setText("");
                 }
             }
         }

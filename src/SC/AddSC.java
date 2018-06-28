@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class AddSC extends JPanel implements ActionListener {
     JTextField Sno, Cno, Grade;
-    JButton addButton;
+    JButton addButton, cancelButton;
 
     public AddSC() {
         try {
@@ -26,6 +26,8 @@ public class AddSC extends JPanel implements ActionListener {
         Grade = new JTextField(12);
         addButton = new JButton("录入");
         addButton.addActionListener(this);
+        cancelButton = new JButton("取消");
+        cancelButton.addActionListener(this);
 
         Box box0 = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
@@ -44,6 +46,7 @@ public class AddSC extends JPanel implements ActionListener {
         box3.add(new JLabel("成  绩:", JLabel.CENTER));
         box3.add(Grade);
         box4.add(addButton);
+        box4.add(cancelButton);
 
         Box boxH = Box.createVerticalBox();
         boxH.add(box1);
@@ -69,15 +72,15 @@ public class AddSC extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "学号和课程号为必填项！");
             } else {
                 Statement stmt = null;
-                ResultSet rs1 = null, rs2 = null,rs3 = null ;
+                ResultSet rs1 = null, rs2 = null, rs3 = null;
                 String sql1, sql2, sql3, sql4;
 
                 sql1 = "select * from student where Sno='" + Sno.getText() + "'";
                 sql2 = "select * from course where Cno='" + Cno.getText() + "'";
                 sql3 = "select * from sc where Sno='" + Sno.getText() + "' and Cno='" + Cno.getText() + "'";
-                System.out.print(sql1+"\n");
-                System.out.print(sql2+"\n");
-                System.out.print(sql3+"\n");
+                System.out.print(sql1 + "\n");
+                System.out.print(sql2 + "\n");
+                System.out.print(sql3 + "\n");
                 try {
                     Connection dbConn = ConnectSql.CONN();
                     stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -93,13 +96,12 @@ public class AddSC extends JPanel implements ActionListener {
                                 Grade.setText("");
                                 JOptionPane.showMessageDialog(this, "该选课记录已存在，无法添加！");
                             } else {            // 不存在该选课记录
-                                if(Grade.getText().equals("")){ // 对成绩为空值的处理
+                                if (Grade.getText().equals("")) { // 对成绩为空值的处理
                                     sql4 = "insert into sc values('" + Sno.getText() + "','" + Cno.getText() + "',NULL)";
-                                }
-                                else {
+                                } else {
                                     sql4 = "insert into sc values('" + Sno.getText() + "','" + Cno.getText() + "','" + Grade.getText() + "')";
                                 }
-                                System.out.print(sql4+"\n");
+                                System.out.print(sql4 + "\n");
 
                                 stmt.executeUpdate(sql4);
                                 Sno.setText("");
@@ -127,6 +129,10 @@ public class AddSC extends JPanel implements ActionListener {
                     System.out.print("SQL Exception:" + e.getMessage());
                 }
             }
+        }else{
+            Sno.setText("");
+            Cno.setText("");
+            Grade.setText("");
         }
     }
 }

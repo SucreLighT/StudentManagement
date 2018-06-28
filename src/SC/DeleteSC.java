@@ -1,6 +1,7 @@
 package SC;
 
 // 删除选课记录
+
 import user.ConnectSql;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class DeleteSC extends JPanel implements ActionListener {
     String saveC = null;
     String saveS = null;
     JTextField findCno, findSno, Sno, Cno, Grade;
-    JButton findButton,delButton;
+    JButton findButton, delButton, cancelButton;
 
     // 实现删除选课界面
     public DeleteSC() {
@@ -30,6 +31,7 @@ public class DeleteSC extends JPanel implements ActionListener {
         Grade = new JTextField(12);
         findButton = new JButton("查找");
         delButton = new JButton("删除");
+        cancelButton = new JButton("取消");
         Cno.setEditable(false);
         Sno.setEditable(false);
         Grade.setEditable(false);
@@ -57,10 +59,11 @@ public class DeleteSC extends JPanel implements ActionListener {
         box5.add(new JLabel("成  绩:", JLabel.CENTER));
         box5.add(Grade);
         box6.add(delButton);
+        box6.add(cancelButton);
 
         delButton.addActionListener(this);
         findButton.addActionListener(this);
-
+        cancelButton.addActionListener(this);
         Box boxH = Box.createVerticalBox();
 
         boxH.add(box1);
@@ -95,7 +98,7 @@ public class DeleteSC extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "学号和课程号为必填项！");
             else {
                 sql1 = "select * from sc where Sno='" + findSno.getText() + "' and Cno='" + findCno.getText() + "'";
-                System.out.print(sql1+"\n");
+                System.out.print(sql1 + "\n");
                 try {
                     Connection dbConn = ConnectSql.CONN();
                     stmt = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -142,6 +145,12 @@ public class DeleteSC extends JPanel implements ActionListener {
                         System.out.print("SQL Exception:" + e1.getMessage());
                     }
                 }
+            } else {
+                findSno.setText("");
+                findCno.setText("");
+                Cno.setText("");
+                Sno.setText("");
+                Grade.setText("");
             }
         }
     }

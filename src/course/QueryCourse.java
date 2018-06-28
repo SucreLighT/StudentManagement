@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class QueryCourse extends JPanel implements ActionListener {
     JTextField Cno, Cname, Cpno, Ccredit;
-    JButton findButton;
+    JButton findButton, cancelButton;
 
     // 实现查询课程界面
     public QueryCourse() {
@@ -26,6 +26,8 @@ public class QueryCourse extends JPanel implements ActionListener {
 
         findButton = new JButton("查询");
         findButton.addActionListener(this);
+        cancelButton = new JButton("取消");
+        cancelButton.addActionListener(this);
 
         Box box0 = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
@@ -33,7 +35,6 @@ public class QueryCourse extends JPanel implements ActionListener {
         Box box3 = Box.createHorizontalBox();
         Box box4 = Box.createHorizontalBox();
         Box box5 = Box.createHorizontalBox();
-        //Box box6 = Box.createHorizontalBox();
 
         JLabel title = new JLabel("查询课程信息");
         title.setFont(new Font("宋体", Font.BOLD, 12));
@@ -47,6 +48,7 @@ public class QueryCourse extends JPanel implements ActionListener {
         box4.add(new JLabel("学  分:"));
         box4.add(Ccredit);
         box5.add(findButton);
+        box5.add(cancelButton);
 
         Box boxH = Box.createVerticalBox();
         boxH.add(box1);
@@ -124,6 +126,13 @@ public class QueryCourse extends JPanel implements ActionListener {
                 }
             }
             ShowCourse showCourse = new ShowCourse(sql);
+        } else {
+            if (obj == cancelButton) {
+                Cno.setText("");
+                Cname.setText("");
+                Cpno.setText("");
+                Ccredit.setText("");
+            }
         }
     }
 }

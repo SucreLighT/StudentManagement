@@ -13,7 +13,7 @@ import java.sql.*;
 public class UpdateStudent extends JPanel implements ActionListener {
     String save = null;
     JTextField findSno, Sno, Sname, Sdept, Sage, Ssex;
-    JButton findButton, updateButton;
+    JButton findButton, updateButton, cancelButton;
 
     // 实现修改学生记录界面
     public UpdateStudent() {
@@ -31,6 +31,7 @@ public class UpdateStudent extends JPanel implements ActionListener {
         Sdept = new JTextField(12);
         findButton = new JButton("查找");
         updateButton = new JButton("修改");
+        cancelButton = new JButton("取消");
 
         Box boxTitle = Box.createHorizontalBox();
         Box box0 = Box.createHorizontalBox();
@@ -58,10 +59,11 @@ public class UpdateStudent extends JPanel implements ActionListener {
         box5.add(new JLabel("系别:", JLabel.CENTER));
         box5.add(Sdept);
         box6.add(updateButton);
+        box6.add(cancelButton);
 
         updateButton.addActionListener(this);
         findButton.addActionListener(this);
-
+        cancelButton.addActionListener(this);
         Box boxH = Box.createVerticalBox();
         boxH.add(box0);
         boxH.add(box1);
@@ -70,7 +72,6 @@ public class UpdateStudent extends JPanel implements ActionListener {
         boxH.add(box4);
         boxH.add(box5);
         boxH.add(box6);
-
 
         boxH.add(Box.createVerticalGlue());
 
@@ -160,6 +161,15 @@ public class UpdateStudent extends JPanel implements ActionListener {
                             System.out.print("SQL Exception:" + e1.getMessage());
                         }
                     }
+                }
+            } else {
+                if (obj == cancelButton) {
+                    findSno.setText("");
+                    Sno.setText("");
+                    Sname.setText("");
+                    Sage.setText("");
+                    Ssex.setText("");
+                    Sdept.setText("");
                 }
             }
         }

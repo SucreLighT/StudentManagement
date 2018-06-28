@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class AddCourse extends JPanel implements ActionListener {
     JTextField Cno, Cname, Cpno, Ccredit;
-    JButton addButton;
+    JButton addButton, cancelButton;
 
     // 实现增加课程记录界面
     public AddCourse() {
@@ -28,6 +28,8 @@ public class AddCourse extends JPanel implements ActionListener {
         Ccredit = new JTextField(12);
         addButton = new JButton("录入");
         addButton.addActionListener(this);
+        cancelButton = new JButton("取消");
+        cancelButton.addActionListener(this);
 
         Box box0 = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
@@ -48,6 +50,7 @@ public class AddCourse extends JPanel implements ActionListener {
         box4.add(new JLabel("学  分:", JLabel.CENTER));
         box4.add(Ccredit);
         box5.add(addButton);
+        box5.add(cancelButton);
 
         Box boxH = Box.createVerticalBox();
         boxH.add(box1);
@@ -107,6 +110,11 @@ public class AddCourse extends JPanel implements ActionListener {
             } catch (SQLException e) {
                 System.out.print("SQL Exception:" + e.getMessage());
             }
+        }else{
+            Cno.setText("");
+            Cname.setText("");
+            Cpno.setText("");
+            Ccredit.setText("");
         }
     }
 }

@@ -14,7 +14,7 @@ public class UpdateSC extends JPanel implements ActionListener {
     String saveC = null;
     String saveS = null;
     JTextField findCno, findSno, Sno, Cno, Grade;
-    JButton findButton, updateButton;
+    JButton findButton, updateButton, cancelButton;
 
 
     // 实现修改选课记录界面
@@ -32,6 +32,8 @@ public class UpdateSC extends JPanel implements ActionListener {
         Grade = new JTextField(12);
         findButton = new JButton("查找");
         updateButton = new JButton("修改");
+        cancelButton = new JButton("取消");
+
         Cno.setEditable(false);     // 不可修改
         Sno.setEditable(false);
 
@@ -58,9 +60,11 @@ public class UpdateSC extends JPanel implements ActionListener {
         box5.add(new JLabel("成  绩:", JLabel.CENTER));
         box5.add(Grade);
         box6.add(updateButton);
+        box6.add(cancelButton);
 
         updateButton.addActionListener(this);
         findButton.addActionListener(this);
+        cancelButton.addActionListener(this);
 
         Box boxH = Box.createVerticalBox();
 
@@ -150,12 +154,17 @@ public class UpdateSC extends JPanel implements ActionListener {
                                 Grade.setText("");
                                 JOptionPane.showMessageDialog(this, "修改完成！");
                             }
-                        }
-                        catch (SQLException e1) {
+                        } catch (SQLException e1) {
                             System.out.print("SQL Exception:" + e1.getMessage());
                         }
                     }
                 }
+            } else {
+                findSno.setText("");
+                findCno.setText("");
+                Sno.setText("");
+                Cno.setText("");
+                Grade.setText("");
             }
         }
     }

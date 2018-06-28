@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class QueryStudent extends JPanel implements ActionListener {
     JTextField Sno, Sname, Ssex, SageMin, SageMax, Sdept;
-    JButton findButton;
+    JButton findButton, cancelButton;
 
     // 实现查询学生界面
     public QueryStudent() {
@@ -27,6 +27,8 @@ public class QueryStudent extends JPanel implements ActionListener {
         Sdept = new JTextField(12);
         findButton = new JButton("查询");
         findButton.addActionListener(this);
+        cancelButton = new JButton("取消");
+        cancelButton.addActionListener(this);
 
         Box box0 = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
@@ -53,6 +55,7 @@ public class QueryStudent extends JPanel implements ActionListener {
         box6.add(new JLabel("系    别:"));
         box6.add(Sdept);
         box7.add(findButton);
+        box7.add(cancelButton);
 
         Box boxH = Box.createVerticalBox();
         boxH.add(box1);
@@ -158,6 +161,16 @@ public class QueryStudent extends JPanel implements ActionListener {
                 }
             }
             ShowStudent ShowStudent = new ShowStudent(sql);
+        }else{
+            if(obj == cancelButton)
+            {
+                Sno.setText("");
+                Sname.setText("");
+                Ssex.setText("");
+                SageMin.setText("");
+                SageMax.setText("");
+                Sdept.setText("");
+            }
         }
     }
 }

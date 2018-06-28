@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class QuerySC extends JPanel implements ActionListener {
     JTextField Sno, Cno, Grade;
-    JButton findButton;
+    JButton findButton, cancelButton;
 
     // 实现选课查询界面
     public QuerySC() {
@@ -26,6 +26,8 @@ public class QuerySC extends JPanel implements ActionListener {
 
         findButton = new JButton("查询");
         findButton.addActionListener(this);
+        cancelButton = new JButton("取消");
+        cancelButton.addActionListener(this);
 
         Box box0 = Box.createHorizontalBox();
         Box box1 = Box.createHorizontalBox();
@@ -43,6 +45,7 @@ public class QuerySC extends JPanel implements ActionListener {
         box3.add(new JLabel("成  绩:"));
         box3.add(Grade);
         box4.add(findButton);
+        box4.add(cancelButton);
 
         Box boxH = Box.createVerticalBox();
         boxH.add(box1);
@@ -110,6 +113,13 @@ public class QuerySC extends JPanel implements ActionListener {
                 }
             }
 
+        }else{
+            if(obj == cancelButton)
+            {
+                Sno.setText("");
+                Cno.setText("");
+                Grade.setText("");
+            }
         }
     }
 }
